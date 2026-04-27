@@ -1,6 +1,6 @@
-# sellercloud-mcp
+﻿# sellercloud-mcp
 
-> The first Model Context Protocol server for SellerCloud. Plug Claude into your catalog, inventory, orders, and channel listings — read-only, in five minutes.
+> The first Model Context Protocol server for SellerCloud. Plug Claude into your catalog, inventory, orders, and channel listings â€” read-only, in five minutes.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -8,7 +8,7 @@
 
 ## Why this exists
 
-SellerCloud has no public SDK. Their REST API is well-documented but unbranded — every team that automates against it ends up writing the same auth-and-pagination glue from scratch.
+SellerCloud has no public SDK. Their REST API is well-documented but unbranded â€” every team that automates against it ends up writing the same auth-and-pagination glue from scratch.
 
 If you use Claude (or any MCP-aware AI assistant) to operate ecommerce day-to-day, that gap is the difference between *"summarize today's orders"* working out of the box and *"summarize today's orders"* requiring a custom integration.
 
@@ -46,7 +46,7 @@ Write endpoints (create order, update inventory, push channel changes) are inten
 pip install sellercloud-mcp
 ```
 
-> v0.1 ships from this repository. PyPI publication is pending — for now, install with `pip install git+<repo URL TBD post-launch>` or clone and run `pip install -e .` locally.
+> v0.1 ships from this repository. PyPI publication is pending â€” for now, install with `pip install git+https://github.com/alveyautomation/sellercloud-mcp` or clone and run `pip install -e .` locally.
 
 ## Configure credentials
 
@@ -61,7 +61,7 @@ SELLERCLOUD_HTTP_TIMEOUT=60            # optional, seconds
 SELLERCLOUD_MAX_RETRIES=3              # optional
 ```
 
-> **Use a read-only SellerCloud account.** v0.1 only calls `GET` endpoints, but defense in depth means you should hand the server a dedicated user that *cannot* modify anything. When v0.2 lands with write tools, opt-in by upgrading the credential — never the other way around.
+> **Use a read-only SellerCloud account.** v0.1 only calls `GET` endpoints, but defense in depth means you should hand the server a dedicated user that *cannot* modify anything. When v0.2 lands with write tools, opt-in by upgrading the credential â€” never the other way around.
 
 ## Wire into Claude Code
 
@@ -145,7 +145,7 @@ sellercloud_search_orders(
 )
 ```
 
-Pagination is handled transparently — SellerCloud caps page size at 50, but the tool collects pages up to `limit`. The response includes `limit_reached: true` when there were more orders than `limit` allowed.
+Pagination is handled transparently â€” SellerCloud caps page size at 50, but the tool collects pages up to `limit`. The response includes `limit_reached: true` when there were more orders than `limit` allowed.
 
 ### `sellercloud_get_order`
 
@@ -163,10 +163,10 @@ sellercloud_get_inventory(sku: str, company_id: int | None = None)
 
 The returned record includes:
 
-- `InventoryAvailableQty` — what the API considers sellable right now
-- `PhysicalQty` — on-hand
-- `ReservedQty` — held for open orders
-- `OnOrder` — incoming PO qty
+- `InventoryAvailableQty` â€” what the API considers sellable right now
+- `PhysicalQty` â€” on-hand
+- `ReservedQty` â€” held for open orders
+- `OnOrder` â€” incoming PO qty
 
 Use `InventoryAvailableQty` as the canonical "qty I can sell" number.
 
@@ -189,7 +189,7 @@ Per-channel listing detail. Useful for spot-checking prices across marketplaces.
 ## Local development
 
 ```bash
-git clone <repo URL TBD post-launch>
+git clone https://github.com/alveyautomation/sellercloud-mcp
 cd sellercloud-mcp
 python -m venv .venv && source .venv/bin/activate    # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
@@ -207,13 +207,13 @@ Integration tests against a real SellerCloud sandbox account are gated behind `S
 
 ## Troubleshooting
 
-**`Failed to obtain SellerCloud token`** — username/password rejected. Most common cause: the account has 2FA enabled or is locked out. SellerCloud's `POST /api/token` endpoint expects a non-2FA service account.
+**`Failed to obtain SellerCloud token`** â€” username/password rejected. Most common cause: the account has 2FA enabled or is locked out. SellerCloud's `POST /api/token` endpoint expects a non-2FA service account.
 
-**`Missing required environment variables`** — the server tried to start before its `.env` was loaded. Either export the vars in the parent shell, or ensure your MCP host config includes them in the `env` block.
+**`Missing required environment variables`** â€” the server tried to start before its `.env` was loaded. Either export the vars in the parent shell, or ensure your MCP host config includes them in the `env` block.
 
-**Empty results despite known data** — confirm the `company_id` is correct. SellerCloud returns only the authenticated user's *default* company unless you pass `companyID` explicitly.
+**Empty results despite known data** â€” confirm the `company_id` is correct. SellerCloud returns only the authenticated user's *default* company unless you pass `companyID` explicitly.
 
-**Pagination feels slow** — page size is capped at 50 by SellerCloud, not by us. For large date windows, expect multiple round-trips.
+**Pagination feels slow** â€” page size is capped at 50 by SellerCloud, not by us. For large date windows, expect multiple round-trips.
 
 ## Contributing
 
@@ -222,12 +222,13 @@ Issues and pull requests welcome. Please:
 - Run `pytest` before opening a PR (`pip install -e ".[dev]"`).
 - Run `pre-commit run --all-files`.
 - Keep additions to v0.1 scope read-only. Write endpoints land in v0.2.
-- Synthetic data only in tests — no real SKUs, customer names, or order numbers.
+- Synthetic data only in tests â€” no real SKUs, customer names, or order numbers.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT â€” see [LICENSE](LICENSE).
 
 ## Disclaimer
 
 `sellercloud-mcp` is an unofficial, third-party integration. It is **not endorsed by, affiliated with, or supported by SellerCloud, Inc.** "SellerCloud" is a trademark of SellerCloud, Inc. Use at your own risk; verify behavior against your tenant before depending on it for production decisions.
+
