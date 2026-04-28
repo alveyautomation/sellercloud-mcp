@@ -1,7 +1,7 @@
 """Synthetic fixtures used across the test suite.
 
 All identifiers, names, and SKUs are invented for testing. Any resemblance
-to a real ecommerce business is coincidental — this file must never gain
+to a real ecommerce business is coincidental, this file must never gain
 real-world identifiers.
 """
 

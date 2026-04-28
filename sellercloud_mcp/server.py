@@ -23,8 +23,7 @@ logger = logging.getLogger(__name__)
 
 mcp = FastMCP("sellercloud-mcp")
 
-# Lazy singletons. We don't want to require credentials at import time —
-# the MCP host may launch the server with a degenerate environment for
+# Lazy singletons. We don't want to require credentials at import time, # the MCP host may launch the server with a degenerate environment for
 # capability discovery.
 _settings: Optional[Settings] = None
 _client: Optional[SellerCloudClient] = None
@@ -301,7 +300,7 @@ def sellercloud_get_channel_listing(
 def _maybe_default_company() -> Optional[int]:
     """Return the configured default CompanyID, or None if unset.
 
-    Unlike `_resolve_company_id`, this never raises — used by tools where
+    Unlike `_resolve_company_id`, this never raises, used by tools where
     `company_id` is optional and the API itself accepts no CompanyID.
     """
     if _settings is None:
@@ -311,7 +310,7 @@ def _maybe_default_company() -> Optional[int]:
 
 
 def main() -> None:
-    """CLI entry point — runs the MCP server over stdio."""
+    """CLI entry point, runs the MCP server over stdio."""
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s %(message)s",

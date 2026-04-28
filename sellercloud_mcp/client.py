@@ -1,13 +1,12 @@
 """HTTP client for the SellerCloud REST API.
 
 The client wraps the public REST surface SellerCloud exposes at the tenant
-domain configured in `SELLERCLOUD_API_URL`. Auth is bearer-token based —
-the client exchanges username/password for a token via `POST /api/token` and
+domain configured in `SELLERCLOUD_API_URL`. Auth is bearer-token based, the client exchanges username/password for a token via `POST /api/token` and
 caches it in memory for the lifetime of the instance, refreshing on `401` or
 near-expiry.
 
 The client is deliberately small and dependency-light: only `requests` is
-required at runtime. State is per-instance — there is no module-level
+required at runtime. State is per-instance, there is no module-level
 mutable state, so multiple clients can run in the same process against
 different tenants without interfering.
 
